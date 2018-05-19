@@ -49,9 +49,22 @@ public class StudentController {
         return "redirect:/student_list";
     }
 
-    @RequestMapping("/remove/{id}")
+    @RequestMapping("/student/remove/{id}")
     public String removeStudent(@PathVariable("id") int id) {
         studentService.removeStudent(id);
+        return "redirect:/student_list";
+    }
+
+    @RequestMapping("/student/update/{id}")
+    public String updateStudent(@PathVariable("id") int id, Model model) {
+        Student student = studentService.getStudentById(id);
+        model.addAttribute("student", student);
+        return "student_update";
+    }
+
+    @RequestMapping(value = "/student/update", method = RequestMethod.POST)
+    public String updateStudent(@ModelAttribute("student") Student s) {
+        studentService.updateStudent(s);
         return "redirect:/student_list";
     }
 }

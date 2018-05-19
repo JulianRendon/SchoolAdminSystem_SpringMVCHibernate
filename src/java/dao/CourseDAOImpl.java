@@ -6,7 +6,7 @@
 package dao;
 
 import java.util.List;
-import model.Student;
+import model.Course;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author Julian
  */
 @Repository
-public class StudentDAOImpl implements StudentDAO {
+public class CourseDAOImpl implements CourseDAO {
 
     private SessionFactory sessionFactory;
 
@@ -25,38 +25,39 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public void addStudent(Student s) {
+    public void addCourse(Course c) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.persist(s);
+        session.persist(c);
     }
 
     @Override
-    public void updateStudent(Student s) {
+    public void updateCourse(Course c) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.update(s);
+        session.update(c);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Student> listStudents() {
+    public List<Course> listCourses() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Student> studentsList = session.createQuery("from Student").list();
-        return studentsList;
+        List<Course> courseList = session.createQuery("from Course").list();
+        return courseList;
     }
 
     @Override
-    public Student getStudentById(int id) {
+    public Course getCourseById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Student s = (Student) session.get(Student.class, new Integer(id));
-        return s;
+        Course c = (Course) session.get(Course.class, new Integer(id));
+        return c;
     }
 
     @Override
-    public void removeStudent(int id) {
+    public void removeCourse(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Student s = (Student) session.load(Student.class, new Integer(id));
-        if (null != s) {
-            session.delete(s);
+        Course c = (Course) session.load(Course.class, new Integer(id));
+        if (null != c) {
+            session.delete(c);
         }
     }
+
 }

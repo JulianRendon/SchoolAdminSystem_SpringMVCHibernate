@@ -1,0 +1,31 @@
+/* 
+    Created on : 14-May-2018, 1:06:46 PM
+    Author     : Julian
+*/
+h1, h2 {
+    color: #1c2a48;
+}
+
+body > nav {
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.35);
+}
+
+.navbar-brand img {
+    max-width: 300px;
+}
+
+@media (max-width: 767.98px) { 
+    .navbar-brand img {
+        max-width: 220px;
+    }
+}
+
+
+.my-table thead {
+    background-color: #1c2a48;
+}
+
+.my-table.table td, .my-table.table th {
+    padding-top: 1.1rem;
+    padding-bottom: 1rem;
+}

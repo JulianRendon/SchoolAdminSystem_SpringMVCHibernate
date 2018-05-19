@@ -39,13 +39,15 @@
         <beans:property name="annotatedClasses">
             <beans:list>
                 <beans:value>model.Student</beans:value>
+                <beans:value>model.Course</beans:value>
+                <!--<beans:value>model.Marks</beans:value>-->
             </beans:list>
         </beans:property>
         <beans:property name="hibernateProperties">
             <beans:props>
                 <beans:prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</beans:prop>
                 <beans:prop key="hibernate.show_sql">true</beans:prop>
-                <beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
+                <beans:prop key="hibernate.hbm2ddl.auto">create</beans:prop>
             </beans:props>
         </beans:property>
     </beans:bean>
@@ -56,6 +58,14 @@
     <beans:bean id="studentService" class="service.StudentServiceImpl">
         <beans:property name="studentDAO" ref="studentDAO"></beans:property>
     </beans:bean>
+    
+    <beans:bean id="courseDAO" class="dao.CourseDAOImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
+    <beans:bean id="courseService" class="service.CourseServiceImpl">
+        <beans:property name="courseDAO" ref="courseDAO"></beans:property>
+    </beans:bean>
+    
     <context:component-scan base-package="controller" />
 	
     <tx:annotation-driven transaction-manager="transactionManager"/>
